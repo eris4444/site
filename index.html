@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لیست قیمت محصولات</title>
+    <title>لیست قیمت محصولات و درخواست نوبت</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,6 +14,15 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+        }
+        .alert {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
         }
         header {
             background-color: #BC8F8F;
@@ -42,34 +51,33 @@
             width: 100%;
             font-size: 12px;
         }
-        .content {
-            margin-bottom: 20px;
-        }
-        /* فرم دریافت نوبت */
-        #appointment-form {
-            display: none;
+        #link {
             margin-top: 20px;
-            text-align: center;
         }
-        input {
-            padding: 10px;
-            margin: 5px;
-            width: 200px;
-        }
-        button {
-            padding: 10px 20px;
+        .btn-link {
+            display: inline-block;
             background-color: #2980b9;
             color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
         }
-        button:hover {
+        .btn-link:hover {
             background-color: #1f6f96;
+        }
+        /* فضای اضافی در پایین صفحه */
+        .content {
+            margin-bottom: 20px;  /* فضای اضافی پایین صفحه */
         }
     </style>
 </head>
 <body>
+    <!-- پیام توجه برای استفاده از فیلترشکن -->
+    <div class="alert">
+        توجه! حتماً با فیلترشکن روشن نوبت بگیرید.
+    </div>
+
     <header>
         <h1>لیست قیمت محصولات</h1>
     </header>
@@ -107,61 +115,13 @@
             </tr>
         </table>
 
-        <!-- دکمه و فرم دریافت نوبت -->
-        <button id="open-form-btn">دریافت نوبت</button>
-        
-        <div id="appointment-form">
-            <h3>فرم دریافت نوبت</h3>
-            <input type="text" id="first-name" placeholder="نام" required><br>
-            <input type="text" id="last-name" placeholder="نام خانوادگی" required><br>
-            <input type="tel" id="phone-number" placeholder="شماره تلفن" required><br>
-            <button onclick="submitForm()">ارسال</button>
+        <div id="link">
+            <a href="https://t.me/Benii65" class="btn-link" target="_blank">برای سفارش و دیدن سایر محصولات کلیک کنید</a>
         </div>
     </div>
 
     <footer>
         <p>تمامی حقوق محفوظ است &copy; 2025</p>
     </footer>
-
-    <script>
-        // باز کردن فرم دریافت نوبت
-        document.getElementById("open-form-btn").onclick = function() {
-            document.getElementById("appointment-form").style.display = "block";
-        };
-
-        function submitForm() {
-            const firstName = document.getElementById("first-name").value;
-            const lastName = document.getElementById("last-name").value;
-            const phoneNumber = document.getElementById("phone-number").value;
-
-            // اگر فرم کامل نشده باشد
-            if (!firstName || !lastName || !phoneNumber) {
-                alert("لطفاً تمامی فیلدها را پر کنید.");
-                return;
-            }
-
-            // پیام ارسالی به ربات تلگرام
-            const message = `نام: ${firstName}\nنام خانوادگی: ${lastName}\nشماره تلفن: ${phoneNumber}`;
-            const token = '6554434146:AAHNahL_2YGrlzmm-vvVwVikgf5mpheQoMk';  // توکن ربات تلگرام شما
-            const chatId = '5619969053';  // شناسه چت شما
-
-            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-
-            // ارسال درخواست به API تلگرام
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        alert("اطلاعات شما با موفقیت ارسال شد!");
-                        document.getElementById("appointment-form").style.display = "none";  // مخفی کردن فرم
-                    } else {
-                        alert("مشکلی پیش آمده. لطفاً دوباره تلاش کنید.");
-                    }
-                })
-                .catch(error => {
-                    alert("خطا در ارسال پیام. لطفاً دوباره تلاش کنید.");
-                });
-        }
-    </script>
 </body>
 </html>
