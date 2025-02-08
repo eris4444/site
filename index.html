@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            min-height: 100vh;  /* حداقل ارتفاع صفحه 100% */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -73,35 +73,30 @@
         .service-btn:hover {
             background-color: #219150;
         }
-        /* فضای اضافی در پایین صفحه */
         .content {
-            margin-bottom: 20px;  /* فضای اضافی پایین صفحه */
+            margin-bottom: 20px;
         }
-        /* استایل فرم */
-        .form-container {
+        /* فرم دریافت نوبت */
+        #appointment-form {
             display: none;
             margin-top: 20px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        .form-container input {
+        input {
             padding: 10px;
-            margin: 10px 0;
-            width: 80%;
-            font-size: 16px;
+            margin: 5px;
+            width: 200px;
         }
-        .form-container button {
-            background-color: #27ae60;
-            color: white;
+        button {
             padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
             cursor: pointer;
+            font-size: 16px;
         }
-        .form-container button:hover {
-            background-color: #219150;
+        button:hover {
+            background-color: #1f6f96;
         }
     </style>
 </head>
@@ -152,15 +147,14 @@
             <a href="https://t.me/serveraebot" class="service-btn" target="_blank">خرید گیفت کارت و اکانت‌های پریمیوم</a>
         </div>
 
-        <!-- دکمه دریافت نوبت -->
-        <button id="appointment-btn" class="service-btn">دریافت نوبت</button>
-
-        <!-- فرم دریافت نوبت -->
-        <div id="appointment-form" class="form-container">
+        <!-- دکمه و فرم دریافت نوبت -->
+        <button id="open-form-btn">دریافت نوبت</button>
+        
+        <div id="appointment-form">
             <h3>فرم دریافت نوبت</h3>
-            <input type="text" id="first-name" placeholder="نام" required>
-            <input type="text" id="last-name" placeholder="نام خانوادگی" required>
-            <input type="text" id="phone-number" placeholder="شماره تلفن" required>
+            <input type="text" id="first-name" placeholder="نام" required><br>
+            <input type="text" id="last-name" placeholder="نام خانوادگی" required><br>
+            <input type="tel" id="phone-number" placeholder="شماره تلفن" required><br>
             <button onclick="submitForm()">ارسال</button>
         </div>
     </div>
@@ -170,32 +164,43 @@
     </footer>
 
     <script>
-        // نمایش یا مخفی کردن فرم دریافت نوبت
-        document.getElementById("appointment-btn").addEventListener("click", function() {
-            const form = document.getElementById("appointment-form");
-            form.style.display = (form.style.display === "none" || form.style.display === "") ? "block" : "none";
-        });
+        // باز کردن فرم دریافت نوبت
+        document.getElementById("open-form-btn").onclick = function() {
+            document.getElementById("appointment-form").style.display = "block";
+        };
 
-        // ذخیره اطلاعات فرم در فایل (در اینجا برای نمونه فقط در کنسول نمایش داده می‌شود)
         function submitForm() {
             const firstName = document.getElementById("first-name").value;
             const lastName = document.getElementById("last-name").value;
             const phoneNumber = document.getElementById("phone-number").value;
 
-            if (firstName && lastName && phoneNumber) {
-                const formData = `${firstName} ${lastName} - ${phoneNumber}\n`;
-
-                // ذخیره داده در فایل به صورت محلی (در محیط واقعی، نیاز به استفاده از سرور یا API دارید)
-                console.log(formData);  // اینجا داده‌ها را در کنسول نمایش می‌دهیم.
-
-                // برای ذخیره در فایل `current.txt` باید از سرور یا سیستم backend استفاده کنید
-                alert("اطلاعات شما با موفقیت ثبت شد!");
-
-                // مخفی کردن فرم پس از ارسال
-                document.getElementById("appointment-form").style.display = "none";
-            } else {
+            // اگر فرم کامل نشده باشد
+            if (!firstName || !lastName || !phoneNumber) {
                 alert("لطفاً تمامی فیلدها را پر کنید.");
+                return;
             }
+
+            // پیام ارسالی به ربات تلگرام
+            const message = `نام: ${firstName}\nنام خانوادگی: ${lastName}\nشماره تلفن: ${phoneNumber}`;
+            const token = '6554434146:AAHNahL_2YGrlzmm-vvVwVikgf5mpheQoMk';  // توکن ربات تلگرام شما
+            const chatId = '5619969053';  // شناسه چت شما
+
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            // ارسال درخواست به API تلگرام
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert("اطلاعات شما با موفقیت ارسال شد!");
+                        document.getElementById("appointment-form").style.display = "none";  // مخفی کردن فرم
+                    } else {
+                        alert("مشکلی پیش آمده. لطفاً دوباره تلاش کنید.");
+                    }
+                })
+                .catch(error => {
+                    alert("خطا در ارسال پیام. لطفاً دوباره تلاش کنید.");
+                });
         }
     </script>
 </body>
