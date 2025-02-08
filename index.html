@@ -50,6 +50,32 @@
             width: 100%;
             font-size: 12px;
         }
+        .form-container {
+            margin: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        input, select {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #2980b9;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1f6f96;
+        }
     </style>
 </head>
 <body>
@@ -92,10 +118,64 @@
                 <td>2,400,000T</td>
             </tr>
         </table>
+
+        <!-- فرم نوبت‌دهی -->
+        <div class="form-container">
+            <h3>فرم نوبت‌دهی</h3>
+            <form action="" method="post" id="appointment-form">
+                <input type="text" id="name" name="name" placeholder="نام" required>
+                <input type="text" id="surname" name="surname" placeholder="نام خانوادگی" required>
+                <input type="text" id="phone" name="phone" placeholder="شماره تلفن" required>
+                <select id="service" name="service" required>
+                    <option value="" disabled selected>نوع خدمات</option>
+                    <option value="خدمات 1">خدمات 1</option>
+                    <option value="خدمات 2">خدمات 2</option>
+                    <option value="خدمات 3">خدمات 3</option>
+                </select>
+                <input type="datetime-local" id="date" name="date" required>
+                <button type="submit">ارسال به تلگرام</button>
+            </form>
+        </div>
     </div>
 
     <footer>
         <p>تمامی حقوق محفوظ است &copy; 2025</p>
     </footer>
+
+    <script>
+        // در اینجا کد برای ارسال اطلاعات به تلگرام اضافه می‌شود
+        const form = document.getElementById('appointment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const date = document.getElementById('date').value;
+
+            const message = `نوبت دهی جدید:
+نام: ${name}
+نام خانوادگی: ${surname}
+شماره تلفن: ${phone}
+نوع خدمات: ${service}
+زمان نوبت دهی: ${date}`;
+
+            const token = '7751110649:AAHAUYzsxdrZi9AV68GZ8_7VednWsVubhwg'; // توکن ربات تلگرام
+            const chatId = '6586794887'; // شناسه چت تلگرام
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    alert('اطلاعات با موفقیت ارسال شد!');
+                    form.reset();  // فرم را ریست می‌کند
+                })
+                .catch(error => {
+                    console.error('خطا در ارسال پیام:', error);
+                    alert('مشکلی پیش آمده است. لطفا دوباره تلاش کنید.');
+                });
+        });
+    </script>
 </body>
 </html>
