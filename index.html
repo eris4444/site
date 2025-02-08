@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحه اصلی</title>
+    <title>لیست قیمت‌ها</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/persian-date/1.0.5/persian-date.min.js"></script>
 </head>
 <body>
+    <header>
+        <h1>لیست قیمت‌ها</h1>
+    </header>
 
-    <div class="container">
-        <header>
-            <h1>لیست قیمت ها</h1>
-        </header>
+    <section class="content">
+        <div class="image-container">
+            <img id="daily-image" src="images/current_image.jpg" alt="تصویر روز">
+        </div>
 
-        <main>
-            <div class="image-container">
-                <img id="daily-image" src="current_image.jpg" alt="تصویر روز">
-            </div>
+        <div class="prices">
+            <table>
+                <thead>
+                    <tr>
+                        <th>محصول</th>
+                        <th>قیمت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>شارژر دیواری ۳۰ وات اپل</td>
+                        <td>۵,۶۰۰,۰۰۰ تومان</td>
+                    </tr>
+                    <tr>
+                        <td>شارژر ۲۰ وات اپل b/a</td>
+                        <td>۱,۸۰۰,۰۰۰ تومان</td>
+                    </tr>
+                    <tr>
+                        <td>شارژر مگ سیف اپل ۲۰ وات</td>
+                        <td>۴,۴۰۰,۰۰۰ تومان</td>
+                    </tr>
+                    <tr>
+                        <td>شارژر مگ سیف اپل ۲۵ وات</td>
+                        <td>۵,۵۰۰,۰۰۰ تومان</td>
+                    </tr>
+                    <tr>
+                        <td>شارژر ۲۰ وات اپل zp/a</td>
+                        <td>۲,۴۰۰,۰۰۰ تومان</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-            <div class="date-container">
-                <p id="current-date"></p>
-            </div>
-        </main>
-
-        <footer>
-            <p>برای مشاهده محصولات بیشتر به تلگرام مراجعه کنید: <a href="https://t.me/Benii65" target="_blank">Telegram</a></p>
-        </footer>
-    </div>
-
-    <script>
-        // نمایش تاریخ شمسی
-        const persianDate = new PersianDate();
-        const formattedDate = persianDate.format('YYYY/MM/DD');
-        document.getElementById("current-date").innerText = `تاریخ امروز: ${formattedDate}`;
-    </script>
-
+    <footer>
+        <p>برای محصولات بیشتر به <a href="https://t.me/Benii65" target="_blank">تلگرام مراجعه کنید</a></p>
+    </footer>
 </body>
 </html>
