@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لیست قیمت محصولات و نوبت‌گیری</title>
+    <title>لیست قیمت + نوبت‌دهی</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,28 +14,11 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-        }
-        .alert {
-            background-color: #ffcc00;
-            color: black;
-            padding: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
         }
         header {
             background-color: #BC8F8F;
             color: white;
             padding: 20px;
-        }
-        footer {
-            background-color: #C0C0C0;
-            color: white;
-            padding: 5px;
-            position: relative;
-            width: 100%;
-            font-size: 12px;
         }
         table {
             width: 80%;
@@ -51,48 +34,59 @@
             background-color: #7B68EE;
             color: white;
         }
-        form {
-            margin: 20px auto;
-            width: 80%;
-            max-width: 600px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        input, select, textarea {
+        footer {
+            background-color: #C0C0C0;
+            color: white;
+            padding: 5px;
+            position: relative;
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+            font-size: 12px;
         }
-        button {
+        #admin-image {
+            margin-top: 20px;
+        }
+        img {
+            width: 300px;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        /* استایل فرم نوبت‌دهی */
+        .appointment-form {
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .appointment-form input, 
+        .appointment-form select, 
+        .appointment-form button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .appointment-form button {
             background-color: #2980b9;
             color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            cursor: pointer;
         }
-        button:hover {
+        .appointment-form button:hover {
             background-color: #1f6f96;
         }
     </style>
 </head>
 <body>
 
-    <!-- پیام توجه برای استفاده از فیلترشکن -->
-    <div class="alert">
-        توجه! حتماً با فیلترشکن روشن نوبت بگیرید.
-    </div>
-
     <header>
-        <h1>لیست قیمت محصولات و فرم نوبت‌گیری</h1>
+        <h1>لیست قیمت محصولات</h1>
     </header>
 
     <div id="content">
-        <!-- جدول محصولات -->
         <h2>قیمت‌های روز ۲۰ بهمن ۱۴۰۳</h2>
         <table>
             <tr>
@@ -125,25 +119,27 @@
             </tr>
         </table>
 
-        <!-- فرم نوبت‌گیری -->
-        <form id="appointmentForm">
-            <label for="name">نام</label>
-            <input type="text" id="name" name="name" required>
+        <!-- نمایش تصویر ادمین -->
+        <div id="admin-image">
+            <h3>تصویر آپلود شده توسط ادمین</h3>
+            <img src="https://i.imgur.com/MGfhBpj.jpeg" alt="تصویر ادمین">
+        </div>
 
-            <label for="lastname">نام خانوادگی</label>
-            <input type="text" id="lastname" name="lastname" required>
+        <!-- فرم نوبت‌دهی -->
+        <div class="appointment-form">
+            <h2>فرم نوبت‌دهی</h2>
+            <input type="text" id="name" placeholder="نام و نام خانوادگی" required>
+            <input type="text" id="phone" placeholder="شماره تلفن" required>
+            <select id="service">
+                <option value="">انتخاب خدمات مورد نظر</option>
+                <option value="تعویض باتری">تعویض باتری</option>
+                <option value="تعمیر صفحه نمایش">تعمیر صفحه نمایش</option>
+                <option value="نصب نرم‌افزار">نصب نرم‌افزار</option>
+            </select>
+            <input type="datetime-local" id="date" required>
+            <button onclick="sendToTelegram()">ارسال نوبت</button>
+        </div>
 
-            <label for="phone">شماره تلفن</label>
-            <input type="text" id="phone" name="phone" required>
-
-            <label for="service">خدمات مورد نظر</label>
-            <textarea id="service" name="service" required></textarea>
-
-            <label for="time">زمان مدنظر</label>
-            <input type="text" id="time" name="time" required>
-
-            <button type="submit">ارسال نوبت</button>
-        </form>
     </div>
 
     <footer>
@@ -151,18 +147,21 @@
     </footer>
 
     <script>
-        const botToken = '6554434146:AAHNahL_2YGrlzmm-vvVwVikgf5mpheQoMk';  // توکن ربات تلگرام
-        const chatId = '5619969053';  // شناسه چت
+        function sendToTelegram() {
+            const botToken = "7751110649:AAHAUYzsxdrZi9AV68GZ8_7VednWsVubhwg";
+            const chatId = "6586794887";
+            
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const service = document.getElementById("service").value;
+            const date = document.getElementById("date").value;
 
-        // ارسال مشخصات به تلگرام
-        function sendAppointmentToTelegram(name, lastname, phone, service, time) {
-            const message = `
-نام: ${name}
-نام خانوادگی: ${lastname}
-شماره تلفن: ${phone}
-خدمات مورد نظر: ${service}
-زمان مدنظر: ${time}
-`;
+            if (!name || !phone || !service || !date) {
+                alert("لطفا همه فیلدها را پر کنید.");
+                return;
+            }
+
+            const message = `📌 درخواست نوبت جدید:\n\n👤 نام: ${name}\n📞 شماره: ${phone}\n🔧 خدمات: ${service}\n⏳ زمان: ${date}`;
 
             const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
@@ -170,30 +169,20 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.ok) {
-                        alert('نوبت شما با موفقیت ثبت شد.');
-                        document.getElementById('appointmentForm').reset();
+                        alert("✅ نوبت شما با موفقیت ارسال شد.");
+                        document.getElementById("name").value = "";
+                        document.getElementById("phone").value = "";
+                        document.getElementById("service").value = "";
+                        document.getElementById("date").value = "";
                     } else {
-                        alert('خطا در ارسال نوبت. لطفاً دوباره تلاش کنید.');
+                        alert("❌ خطا در ارسال نوبت. دوباره تلاش کنید.");
                     }
                 })
                 .catch(error => {
-                    alert('خطا در ارسال به تلگرام.');
-                    console.error('Error:', error);
+                    alert("❌ خطا در ارتباط با سرور تلگرام.");
                 });
         }
-
-        // ارسال فرم نوبت‌گیری
-        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const lastname = document.getElementById('lastname').value;
-            const phone = document.getElementById('phone').value;
-            const service = document.getElementById('service').value;
-            const time = document.getElementById('time').value;
-
-            sendAppointmentToTelegram(name, lastname, phone, service, time);
-        });
     </script>
+
 </body>
 </html>
