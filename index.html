@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لیست قیمت محصولات و درخواست نوبت</title>
+    <title>لیست قیمت محصولات و نوبت‌گیری</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,6 +29,14 @@
             color: white;
             padding: 20px;
         }
+        footer {
+            background-color: #C0C0C0;
+            color: white;
+            padding: 5px;
+            position: relative;
+            width: 100%;
+            font-size: 12px;
+        }
         table {
             width: 80%;
             margin: 20px auto;
@@ -43,46 +51,48 @@
             background-color: #7B68EE;
             color: white;
         }
-        footer {
-            background-color: #C0C0C0;
-            color: white;
-            padding: 5px;
-            position: relative;
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, textarea {
             width: 100%;
-            font-size: 12px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
         }
-        #link {
-            margin-top: 20px;
-        }
-        .btn-link {
-            display: inline-block;
+        button {
             background-color: #2980b9;
             color: white;
-            padding: 15px 30px;
-            text-decoration: none;
+            padding: 10px 20px;
+            border: none;
             border-radius: 5px;
-            font-size: 18px;
+            font-size: 16px;
         }
-        .btn-link:hover {
+        button:hover {
             background-color: #1f6f96;
-        }
-        /* فضای اضافی در پایین صفحه */
-        .content {
-            margin-bottom: 20px;  /* فضای اضافی پایین صفحه */
         }
     </style>
 </head>
 <body>
+
     <!-- پیام توجه برای استفاده از فیلترشکن -->
     <div class="alert">
         توجه! حتماً با فیلترشکن روشن نوبت بگیرید.
     </div>
 
     <header>
-        <h1>لیست قیمت محصولات</h1>
+        <h1>لیست قیمت محصولات و فرم نوبت‌گیری</h1>
     </header>
 
-    <div id="content" class="content">
+    <div id="content">
+        <!-- جدول محصولات -->
         <h2>قیمت‌های روز ۲۰ بهمن ۱۴۰۳</h2>
         <table>
             <tr>
@@ -115,13 +125,75 @@
             </tr>
         </table>
 
-        <div id="link">
-            <a href="https://t.me/Benii65" class="btn-link" target="_blank">برای سفارش و دیدن سایر محصولات کلیک کنید</a>
-        </div>
+        <!-- فرم نوبت‌گیری -->
+        <form id="appointmentForm">
+            <label for="name">نام</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="lastname">نام خانوادگی</label>
+            <input type="text" id="lastname" name="lastname" required>
+
+            <label for="phone">شماره تلفن</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="service">خدمات مورد نظر</label>
+            <textarea id="service" name="service" required></textarea>
+
+            <label for="time">زمان مدنظر</label>
+            <input type="text" id="time" name="time" required>
+
+            <button type="submit">ارسال نوبت</button>
+        </form>
     </div>
 
     <footer>
         <p>تمامی حقوق محفوظ است &copy; 2025</p>
     </footer>
+
+    <script>
+        const botToken = '6554434146:AAHNahL_2YGrlzmm-vvVwVikgf5mpheQoMk';  // توکن ربات تلگرام
+        const chatId = '5619969053';  // شناسه چت
+
+        // ارسال مشخصات به تلگرام
+        function sendAppointmentToTelegram(name, lastname, phone, service, time) {
+            const message = `
+نام: ${name}
+نام خانوادگی: ${lastname}
+شماره تلفن: ${phone}
+خدمات مورد نظر: ${service}
+زمان مدنظر: ${time}
+`;
+
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert('نوبت شما با موفقیت ثبت شد.');
+                        document.getElementById('appointmentForm').reset();
+                    } else {
+                        alert('خطا در ارسال نوبت. لطفاً دوباره تلاش کنید.');
+                    }
+                })
+                .catch(error => {
+                    alert('خطا در ارسال به تلگرام.');
+                    console.error('Error:', error);
+                });
+        }
+
+        // ارسال فرم نوبت‌گیری
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const lastname = document.getElementById('lastname').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const time = document.getElementById('time').value;
+
+            sendAppointmentToTelegram(name, lastname, phone, service, time);
+        });
+    </script>
 </body>
 </html>
