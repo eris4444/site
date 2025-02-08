@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه اصلی</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/persian-date/1.0.5/persian-date.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>لیست قیمت ها</h1>
+        </header>
+
+        <main>
+            <div class="image-container">
+                <img id="daily-image" src="current_image.jpg" alt="تصویر روز">
+            </div>
+
+            <div class="date-container">
+                <p id="current-date"></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>برای مشاهده محصولات بیشتر به تلگرام مراجعه کنید: <a href="https://t.me/Benii65" target="_blank">Telegram</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // نمایش تاریخ شمسی
+        const persianDate = new PersianDate();
+        const formattedDate = persianDate.format('YYYY/MM/DD');
+        document.getElementById("current-date").innerText = `تاریخ امروز: ${formattedDate}`;
+    </script>
+
+</body>
+</html>
