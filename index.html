@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تبریک تولد زی زی</title>
+    <style>
+        body {
+            background-color: black;
+            overflow: hidden;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background: gold;
+            color: black;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .text {
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="startCelebration()">ورود</button>
+
+    <script>
+        function startCelebration() {
+            for (let i = 0; i < 300; i++) { // تعداد متن‌های ایجادشده
+                let text = document.createElement("div");
+                text.className = "text";
+                text.innerText = "تولدت مبارک زی زی";
+
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * window.innerHeight;
+                let size = Math.random() * 15 + 5; // سایز تصادفی بین 5 تا 20px
+
+                text.style.left = `${x}px`;
+                text.style.top = `${y}px`;
+                text.style.fontSize = `${size}px`;
+                text.style.opacity = Math.random(); // شفافیت تصادفی
+
+                document.body.appendChild(text);
+            }
+        }
+    </script>
+
+</body>
+</html>
