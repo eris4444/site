@@ -3,70 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تبریک تولد زی زی</title>
+    <title>AI Chatbot</title>
     <style>
-        body {
-            background-color: black;
-            overflow: hidden;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        #message {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            border: none;
-            background: gold;
-            color: black;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-        .text {
-            position: absolute;
-            color: white;
-            font-size: 12px;
-            font-family: Arial, sans-serif;
-            white-space: nowrap;
-        }
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        #chatbox { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: auto; }
+        input, button { width: 100%; padding: 10px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <div id="message">فقط زی زی ها وارد بشن</div>
-    <button id="enterButton" onclick="startCelebration()">ورود</button>
+    <h2>AI Chatbot</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="پیام خود را وارد کنید...">
+    <button onclick="sendMessage()">ارسال</button>
 
-    <script>
-        function startCelebration() {
-            document.getElementById("enterButton").remove(); // حذف دکمه ورود
-
-            for (let i = 0; i < 300; i++) { // تعداد متن‌های ایجادشده
-                let text = document.createElement("div");
-                text.className = "text";
-                text.innerText = "تولدت مبارک زی زی";
-
-                let x = Math.random() * window.innerWidth;
-                let y = Math.random() * window.innerHeight;
-                let size = Math.random() * 15 + 5; // سایز تصادفی بین 5 تا 20px
-
-                text.style.left = `${x}px`;
-                text.style.top = `${y}px`;
-                text.style.fontSize = `${size}px`;
-                text.style.opacity = Math.random(); // شفافیت تصادفی
-
-                document.body.appendChild(text);
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
