@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Coding Assistant</title>
+    <title>AI Programming Assistant</title>
     <style>
         /* Global Styles */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #1e1e2e;
-            color: #ffffff;
+            background-color: #f4f4f9;
+            color: #333;
             text-align: center;
             margin: 50px;
         }
@@ -19,50 +19,46 @@
             max-width: 600px;
             margin: auto;
             padding: 20px;
-            background: linear-gradient(135deg, #2a2a40, #1e1e2e);
+            background: #fff;
             border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
-            color: #00e6e6;
+            color: #007BFF;
         }
 
         /* Input */
         input {
             width: 80%;
             padding: 12px;
-            border: none;
+            border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-            background-color: #2e2e4e;
-            color: #ffffff;
+            margin-bottom: 10px;
             outline: none;
-            transition: 0.3s;
         }
 
         input:focus {
-            background-color: #444466;
+            border-color: #007BFF;
         }
 
         /* Button */
         button {
-            background: linear-gradient(45deg, #00e6e6, #008080);
+            background-color: #007BFF;
             color: white;
             border: none;
             padding: 12px 20px;
-            margin-top: 10px;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background: linear-gradient(45deg, #008080, #00e6e6);
-            transform: scale(1.05);
+            background-color: #0056b3;
         }
 
         /* Response Box */
@@ -70,24 +66,23 @@
             margin-top: 20px;
             padding: 15px;
             border-radius: 5px;
-            background-color: #2e2e4e;
-            color: #00e6e6;
+            background-color: #f0f0f0;
+            color: #333;
             min-height: 50px;
-            transition: 0.3s;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>💻 AI Coding Assistant</h1>
+        <h1>AI Programming Assistant</h1>
         <input type="text" id="question" placeholder="Ask a programming question...">
         <button onclick="askAI()">Ask</button>
         <div id="response">Waiting for your question...</div>
     </div>
 
     <script>
-        async function askAI() {
+        function askAI() {
             let question = document.getElementById("question").value;
             let responseDiv = document.getElementById("response");
 
@@ -96,33 +91,28 @@
                 return;
             }
 
-            let apiKey = "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"; // کلید خود را جایگزین کنید
-
-            let prompt = `Only answer programming-related questions. If the question is not related to programming, respond with 'I only answer programming questions.'\n\nUser: ${question}\nAI:`;
-
-            let data = {
-                model: "gpt-3.5-turbo",
-                messages: [{ role: "user", content: prompt }],
-                max_tokens: 100,
+            // Simple responses based on the question
+            const programmingTopics = {
+                "variables": "A variable is a container for storing data values. In most programming languages, a variable must be declared before it is used.",
+                "loops": "A loop is a programming construct that repeats a block of code while a condition is true. Example: 'for', 'while' loops.",
+                "functions": "A function is a block of code designed to perform a particular task. Functions can take inputs and return outputs.",
+                "arrays": "An array is a collection of elements, usually of the same type, stored in a contiguous memory location.",
+                "objects": "An object is a collection of properties, where each property is a key-value pair. It's commonly used in object-oriented programming."
             };
 
-            responseDiv.innerHTML = "⏳ Thinking...";
+            // Convert question to lowercase to make matching easier
+            const questionLower = question.toLowerCase();
 
-            try {
-                let response = await fetch("https://api.openai.com/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${apikey}`
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                let result = await response.json();
-                responseDiv.innerHTML = result.choices[0].message.content || "⚠️ No response received.";
-            } catch (error) {
-                responseDiv.innerHTML = "❌ Error: Unable to get a response.";
+            // Check if the question contains a known topic
+            for (const topic in programmingTopics) {
+                if (questionLower.includes(topic)) {
+                    responseDiv.innerHTML = programmingTopics[topic];
+                    return;
+                }
             }
+
+            // Default response if no topic is found
+            responseDiv.innerHTML = "I only answer programming-related questions. Try asking about variables, loops, functions, arrays, or objects.";
         }
     </script>
 
