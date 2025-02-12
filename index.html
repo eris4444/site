@@ -1,120 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Programming Assistant</title>
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            text-align: center;
-            margin: 50px;
-        }
-
-        /* Container */
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #007BFF;
-        }
-
-        /* Input */
-        input {
-            width: 80%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-bottom: 10px;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #007BFF;
-        }
-
-        /* Button */
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Response Box */
-        #response {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 5px;
-            background-color: #f0f0f0;
-            color: #333;
-            min-height: 50px;
-        }
-    </style>
+    <title>هوش مصنوعی من</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <div class="container">
-        <h1>AI Programming Assistant</h1>
-        <input type="text" id="question" placeholder="Ask a programming question...">
-        <button onclick="askAI()">Ask</button>
-        <div id="response">Waiting for your question...</div>
+        <h1>به هوش مصنوعی من خوش آمدید!</h1>
+        <textarea id="userInput" placeholder="سوال خود را وارد کنید..."></textarea>
+        <button id="submitButton">ارسال</button>
+        <div id="response"></div>
     </div>
 
-    <script>
-        function askAI() {
-            let question = document.getElementById("question").value;
-            let responseDiv = document.getElementById("response");
-
-            if (!question) {
-                responseDiv.innerHTML = "⚠️ Please enter a question.";
-                return;
-            }
-
-            // Simple responses based on the question
-            const programmingTopics = {
-                "variables": "A variable is a container for storing data values. In most programming languages, a variable must be declared before it is used.",
-                "loops": "A loop is a programming construct that repeats a block of code while a condition is true. Example: 'for', 'while' loops.",
-                "functions": "A function is a block of code designed to perform a particular task. Functions can take inputs and return outputs.",
-                "arrays": "An array is a collection of elements, usually of the same type, stored in a contiguous memory location.",
-                "objects": "An object is a collection of properties, where each property is a key-value pair. It's commonly used in object-oriented programming."
-            };
-
-            // Convert question to lowercase to make matching easier
-            const questionLower = question.toLowerCase();
-
-            // Check if the question contains a known topic
-            for (const topic in programmingTopics) {
-                if (questionLower.includes(topic)) {
-                    responseDiv.innerHTML = programmingTopics[topic];
-                    return;
-                }
-            }
-
-            // Default response if no topic is found
-            responseDiv.innerHTML = "I only answer programming-related questions. Try asking about variables, loops, functions, arrays, or objects.";
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
