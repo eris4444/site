@@ -1,103 +1,94 @@
-/* تنظیمات کلی */
 body {
-    font-family: 'Tahoma', sans-serif;
-    direction: rtl;
-    text-align: right;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
+    direction: rtl; /* راست‌چین کردن کل سایت */
+    text-align: right; /* متن‌ها از راست شروع شوند */
 }
 
-/* هدر */
 header {
-    background: #2c3e50;
+    background-color: #222;
     color: white;
+    padding: 40px 0;
+    text-align: center; /* عنوان هدر در وسط */
+}
+
+nav {
     text-align: center;
-    padding: 15px;
+    margin-top: 10px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0;
-}
-
-nav ul li {
-    display: inline;
+nav a {
+    color: white;
     margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
     text-decoration: none;
-    font-weight: bold;
+    font-size: 1.2em;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
+.intro-section, .about-section, .contact-section {
+    padding: 50px 10%;
 }
 
-/* فرم تماس */
-.contact {
+h1, h2, h3 {
+    text-align: right;
+}
+
+.properties {
+    display: flex;
+    justify-content: right;
+    flex-wrap: wrap;
+    gap: 20px;
     padding: 40px;
-    text-align: center;
 }
 
-.contact h2 {
-    font-size: 24px;
-    color: #2c3e50;
+.property {
+    width: 30%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.contact form {
-    max-width: 400px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.contact label {
-    display: block;
-    font-size: 16px;
-    margin: 10px 0 5px;
-}
-
-.contact input, .contact textarea {
+.property img {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    height: 250px;
+    object-fit: cover;
 }
 
-.contact button {
-    background: #2c3e50;
+.property h3 {
+    font-size: 1.6em;
+    margin: 20px;
+}
+
+.property p {
+    margin: 10px 20px;
+}
+
+.contact-section form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+
+.contact-section input, .contact-section textarea {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    text-align: right;
+}
+
+button {
+    background-color: #222;
     color: white;
-    padding: 10px 20px;
+    padding: 10px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.contact button:hover {
-    background: #1a252f;
-}
-
-/* فوتر */
 footer {
-    text-align: center;
-    background: #2c3e50;
+    background-color: #222;
     color: white;
-    padding: 10px;
-    margin-top: 30px;
-    font-size: 14px;
+    padding: 20px;
+    text-align: center;
 }
