@@ -5,13 +5,13 @@ body {
     text-align: right;
     margin: 0;
     padding: 0;
-    background-color: #fff5f8;
+    background-color: #f5f5f5;
     color: #333;
 }
 
 /* هدر */
 header {
-    background: #e91e63;
+    background: #2c3e50;
     color: white;
     text-align: center;
     padding: 15px;
@@ -25,6 +25,7 @@ header h1 {
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 10px 0 0;
 }
 
 nav ul li {
@@ -42,64 +43,6 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-/* بخش معرفی (Hero Section) */
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(to right, #ff758c, #ff7eb3);
-    color: white;
-}
-
-.hero h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.hero .btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background: white;
-    color: #e91e63;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.hero .btn:hover {
-    background: #ffebee;
-}
-
-/* بخش خدمات */
-.services {
-    padding: 40px;
-    text-align: center;
-}
-
-.services h2 {
-    font-size: 24px;
-    color: #e91e63;
-}
-
-.services ul {
-    list-style: none;
-    padding: 0;
-}
-
-.services ul li {
-    background: #ffebee;
-    margin: 10px auto;
-    padding: 12px;
-    width: 50%;
-    border-radius: 10px;
-    font-size: 18px;
-}
-
 /* فرم تماس */
 .contact {
     padding: 40px;
@@ -108,7 +51,7 @@ nav ul li a:hover {
 
 .contact h2 {
     font-size: 24px;
-    color: #e91e63;
+    color: #2c3e50;
 }
 
 .contact form {
@@ -135,7 +78,7 @@ nav ul li a:hover {
 }
 
 .contact button {
-    background: #e91e63;
+    background: #2c3e50;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -146,13 +89,13 @@ nav ul li a:hover {
 }
 
 .contact button:hover {
-    background: #c2185b;
+    background: #1a252f;
 }
 
 /* فوتر */
 footer {
     text-align: center;
-    background: #e91e63;
+    background: #2c3e50;
     color: white;
     padding: 10px;
     margin-top: 30px;
