@@ -10,8 +10,8 @@ body {
 header {
     background-color: #222;
     color: white;
-    padding: 40px 0;
-    text-align: center; /* عنوان هدر در وسط */
+    padding: 20px 0;
+    text-align: center;
 }
 
 nav {
@@ -20,10 +20,26 @@ nav {
 }
 
 nav a {
+    display: inline-block;
     color: white;
-    margin: 0 15px;
+    background-color: #444;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 8px;
     text-decoration: none;
     font-size: 1.2em;
+    transition: 0.3s ease-in-out;
+}
+
+nav a:hover {
+    background-color: #777;
+}
+
+/* استایل دکمه فعال */
+nav a.active {
+    background-color: gold;
+    color: black;
+    font-weight: bold;
 }
 
 .intro-section, .about-section, .contact-section {
