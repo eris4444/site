@@ -36,7 +36,7 @@ document.getElementById('close-detail').addEventListener('click', () => {
 });
 
 // تابع برای اضافه کردن محصول به سبد خرید
-function addToCart() {
+document.getElementById('add-to-cart-button').addEventListener('click', () => {
     const productName = document.getElementById('detail-name').textContent;
     const productPrice = document.getElementById('detail-price').textContent;
     const quantity = parseInt(document.getElementById('quantity').value);
@@ -50,8 +50,8 @@ function addToCart() {
     cart.push(product);
     updateCartCount();
     alert(`${productName} (${quantity} عدد) به سبد خرید اضافه شد!`);
-    document.getElementById('product-detail').style.display = 'none';
-}
+    document.getElementById('product-detail').style.display = 'none'; // بستن صفحه جزئیات
+});
 
 // تابع برای به‌روزرسانی تعداد آیتم‌های سبد خرید
 function updateCartCount() {
@@ -59,6 +59,8 @@ function updateCartCount() {
 }
 
 // تابع برای نمایش سبد خرید
+document.getElementById('view-cart-button').addEventListener('click', viewCart);
+
 function viewCart() {
     const cartDetail = document.getElementById('cart-detail');
     const cartItems = document.getElementById('cart-items');
@@ -89,6 +91,8 @@ document.getElementById('close-cart').addEventListener('click', () => {
 });
 
 // تابع برای ارسال سفارش از طریق واتساپ
+document.getElementById('send-order-button').addEventListener('click', sendOrderViaWhatsApp);
+
 function sendOrderViaWhatsApp() {
     if (cart.length === 0) {
         alert('سبد خرید شما خالی است!');
