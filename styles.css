@@ -5,9 +5,9 @@ body {
     text-align: right;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #f8f9fa; /* رنگ پس‌زمینه روشن‌تر */
     color: #333;
-    animation: fadeIn 1s ease-in-out; /* انیمیشن fadeIn برای کل صفحه */
+    animation: fadeIn 1s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -20,13 +20,13 @@ body {
 }
 
 header {
-    background-color: #2c3e50;
+    background-color: #34495e; /* رنگ هدر تیره‌تر و جذاب‌تر */
     color: white;
     padding: 20px;
     text-align: center;
     position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    animation: slideInFromLeft 0.8s ease-out; /* انیمیشن slideInFromLeft برای هدر */
+    animation: slideInFromLeft 0.8s ease-out;
 }
 
 @keyframes slideInFromLeft {
@@ -41,6 +41,7 @@ header {
 nav ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -56,19 +57,20 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #1abc9c;
+    color: #1abc9c; /* تغییر رنگ هنگام هاور */
 }
 
 .cart {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%); /* مرکز عمودی دکمه سبد خرید */
     display: flex;
     align-items: center;
 }
 
 .cart button {
-    background-color: #1abc9c;
+    background-color: #e67e22; /* رنگ نارنجی برای دکمه سبد خرید */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -76,7 +78,7 @@ nav ul li a:hover {
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    animation: slideInFromRight 0.8s ease-out; /* انیمیشن slideInFromRight برای دکمه سبد خرید */
+    animation: slideInFromRight 0.8s ease-out;
 }
 
 @keyframes slideInFromRight {
@@ -89,18 +91,18 @@ nav ul li a:hover {
 }
 
 .cart button:hover {
-    background-color: #16a085;
-    transform: scale(1.05); /* بزرگ‌شدن دکمه هنگام هاور */
+    background-color: #d35400; /* تغییر رنگ هنگام هاور */
+    transform: scale(1.05);
 }
 
 #cart-count {
-    background-color: #e74c3c;
+    background-color: #e74c3c; /* رنگ قرمز برای شمارنده */
     color: white;
     border-radius: 50%;
     padding: 5px 10px;
     margin-left: 10px;
     font-size: 14px;
-    animation: bounce 0.5s ease-in-out; /* انیمیشن bounce برای شمارنده سبد خرید */
+    animation: bounce 0.5s ease-in-out;
 }
 
 @keyframes bounce {
@@ -137,7 +139,7 @@ nav ul li a:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     border-radius: 10px;
-    animation: fadeIn 0.5s ease-in-out; /* انیمیشن fadeIn برای محصولات */
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .product:hover {
@@ -153,7 +155,7 @@ nav ul li a:hover {
 
 .product h3 {
     margin: 10px 0;
-    color: #2c3e50;
+    color: #34495e; /* رنگ تیره‌تر برای عنوان محصول */
 }
 
 .product p {
@@ -173,7 +175,7 @@ nav ul li a:hover {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    animation: fadeIn 0.5s ease-in-out; /* انیمیشن fadeIn برای صفحه جزئیات */
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .detail-content {
@@ -223,7 +225,7 @@ nav ul li a:hover {
 }
 
 .add-to-cart-button {
-    background-color: #1abc9c;
+    background-color: #1abc9c; /* رنگ سبز برای دکمه افزودن به سبد خرید */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -232,12 +234,11 @@ nav ul li a:hover {
     margin-top: 10px;
     font-size: 16px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    animation: bounce 1s ease-in-out; /* انیمیشن bounce برای دکمه افزودن به سبد خرید */
 }
 
 .add-to-cart-button:hover {
-    background-color: #16a085;
-    transform: scale(1.05); /* بزرگ‌شدن دکمه هنگام هاور */
+    background-color: #16a085; /* تغییر رنگ هنگام هاور */
+    transform: scale(1.05);
 }
 
 /* بخش سبد خرید */
@@ -252,7 +253,7 @@ nav ul li a:hover {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    animation: fadeIn 0.5s ease-in-out; /* انیمیشن fadeIn برای سبد خرید */
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .cart-content {
@@ -278,7 +279,7 @@ nav ul li a:hover {
 }
 
 #cart-items li button {
-    background-color: #e74c3c;
+    background-color: #e74c3c; /* رنگ قرمز برای دکمه حذف */
     color: white;
     border: none;
     padding: 5px 10px;
@@ -288,11 +289,11 @@ nav ul li a:hover {
 }
 
 #cart-items li button:hover {
-    background-color: #c0392b;
+    background-color: #c0392b; /* تغییر رنگ هنگام هاور */
 }
 
 .whatsapp-button {
-    background-color: #25D366;
+    background-color: #25D366; /* رنگ سبز برای دکمه واتساپ */
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -301,17 +302,16 @@ nav ul li a:hover {
     margin-top: 10px;
     font-size: 16px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    animation: bounce 1s ease-in-out; /* انیمیشن bounce برای دکمه واتساپ */
 }
 
 .whatsapp-button:hover {
-    background-color: #128C7E;
-    transform: scale(1.05); /* بزرگ‌شدن دکمه هنگام هاور */
+    background-color: #128C7E; /* تغییر رنگ هنگام هاور */
+    transform: scale(1.05);
 }
 
 /* پاورقی */
 footer {
-    background-color: #2c3e50;
+    background-color: #34495e; /* رنگ پاورقی تیره‌تر */
     color: white;
     text-align: center;
     padding: 10px;
