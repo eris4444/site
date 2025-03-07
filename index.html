@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه محصولات پوستی</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>فروشگاه محصولات پوستی</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">خانه</a></li>
+                <li><a href="#products">محصولات</a></li>
+                <li><a href="#contact">تماس با ما</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- بخش محصولات -->
+        <section id="products" class="products">
+            <h2>محصولات ما</h2>
+            <div class="product-list">
+                <!-- محصولات از طریق JavaScript لود می‌شوند -->
+            </div>
+        </section>
+
+        <!-- بخش نمایش جزئیات محصول -->
+        <section id="product-detail" class="product-detail" style="display: none;">
+            <div class="detail-content">
+                <button id="close-detail" class="close-button">&times;</button>
+                <img id="detail-image" src="" alt="عکس محصول">
+                <h2 id="detail-name"></h2>
+                <p id="detail-description"></p>
+                <p id="detail-price"></p>
+                <button onclick="orderOnWhatsApp()" class="whatsapp-button">سفارش از طریق واتساپ</button>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>برای سفارش یا سوالات، از طریق واتساپ با ما در ارتباط باشید:</p>
+        <a href="https://wa.me/989123456789" class="whatsapp-button">ارسال پیام در واتساپ</a>
+        <p>© 2025 فروشگاه محصولات پوستی. تمام حقوق محفوظ است.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
