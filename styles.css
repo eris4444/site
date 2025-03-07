@@ -5,7 +5,7 @@ body {
     text-align: right;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: #f0f4f8; /* رنگ پس‌زمینه روشن‌تر */
     color: #333;
     animation: fadeIn 1s ease-in-out;
 }
@@ -20,7 +20,7 @@ body {
 }
 
 header {
-    background-color: #34495e;
+    background-color: #2c3e50; /* رنگ هدر تیره‌تر */
     color: white;
     padding: 20px;
     text-align: center;
@@ -57,7 +57,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #1abc9c;
+    color: #1abc9c; /* تغییر رنگ هنگام هاور */
 }
 
 .cart {
@@ -69,7 +69,7 @@ nav ul li a:hover {
 }
 
 .cart button {
-    background-color: #e67e22;
+    background-color: #e67e22; /* رنگ نارنجی */
     color: white;
     border: none;
     padding: 12px 24px;
@@ -85,7 +85,7 @@ nav ul li a:hover {
 }
 
 .cart button:hover {
-    background-color: #d35400;
+    background-color: #d35400; /* تغییر رنگ هنگام هاور */
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
@@ -96,7 +96,7 @@ nav ul li a:hover {
 }
 
 #cart-count {
-    background-color: #e74c3c;
+    background-color: #e74c3c; /* رنگ قرمز */
     color: white;
     border-radius: 50%;
     padding: 5px 10px;
@@ -155,7 +155,7 @@ nav ul li a:hover {
 
 .product h3 {
     margin: 10px 0;
-    color: #34495e;
+    color: #2c3e50; /* رنگ تیره‌تر برای عنوان محصول */
 }
 
 .product p {
@@ -225,7 +225,7 @@ nav ul li a:hover {
 }
 
 .add-to-cart-button {
-    background-color: #1abc9c;
+    background-color: #1abc9c; /* رنگ سبز */
     color: white;
     border: none;
     padding: 12px 24px;
@@ -245,7 +245,7 @@ nav ul li a:hover {
 }
 
 .add-to-cart-button:hover {
-    background-color: #16a085;
+    background-color: #16a085; /* تغییر رنگ هنگام هاور */
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
@@ -293,7 +293,7 @@ nav ul li a:hover {
 }
 
 #cart-items li button {
-    background-color: #e74c3c;
+    background-color: #e74c3c; /* رنگ قرمز */
     color: white;
     border: none;
     padding: 5px 10px;
@@ -303,11 +303,11 @@ nav ul li a:hover {
 }
 
 #cart-items li button:hover {
-    background-color: #c0392b;
+    background-color: #c0392b; /* تغییر رنگ هنگام هاور */
 }
 
 #send-order-button {
-    background-color: #1abc9c;
+    background-color: #1abc9c; /* رنگ سبز */
     color: white;
     border: none;
     padding: 12px 24px;
@@ -327,7 +327,7 @@ nav ul li a:hover {
 }
 
 #send-order-button:hover {
-    background-color: #16a085;
+    background-color: #16a085; /* تغییر رنگ هنگام هاور */
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
@@ -339,7 +339,7 @@ nav ul li a:hover {
 
 /* دکمه واتساپ */
 .whatsapp-button {
-    background-color: #25D366;
+    background-color: #25D366; /* رنگ سبز واتساپ */
     color: white;
     border: none;
     padding: 12px 24px;
@@ -359,7 +359,7 @@ nav ul li a:hover {
 }
 
 .whatsapp-button:hover {
-    background-color: #128C7E;
+    background-color: #128C7E; /* تغییر رنگ هنگام هاور */
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
@@ -371,7 +371,7 @@ nav ul li a:hover {
 
 /* پاورقی */
 footer {
-    background-color: #34495e;
+    background-color: #2c3e50; /* رنگ تیره‌تر */
     color: white;
     text-align: center;
     padding: 10px;
