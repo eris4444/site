@@ -138,6 +138,15 @@ nav ul li a {
     cursor: pointer;
 }
 
+.detail-content img {
+    max-width: 100%; /* عکس از عرض والد خود بزرگ‌تر نمی‌شود */
+    max-height: 300px; /* حداکثر ارتفاع عکس */
+    width: auto; /* حفظ نسبت ابعاد */
+    height: auto; /* حفظ نسبت ابعاد */
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
 .detail-content input[type="number"] {
     width: 60px;
     padding: 5px;
