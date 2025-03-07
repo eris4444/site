@@ -62,9 +62,8 @@ nav ul li a:hover {
 
 .cart {
     position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+    top: 20px; /* فاصله از بالای هدر */
+    left: 20px; /* فاصله از چپ هدر */
     display: flex;
     align-items: center;
 }
