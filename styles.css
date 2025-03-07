@@ -5,7 +5,7 @@ body {
     text-align: right;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa; /* رنگ پس‌زمینه روشن‌تر */
+    background-color: #f8f9fa;
     color: #333;
     animation: fadeIn 1s ease-in-out;
 }
@@ -20,7 +20,7 @@ body {
 }
 
 header {
-    background-color: #34495e; /* رنگ هدر تیره‌تر و جذاب‌تر */
+    background-color: #34495e;
     color: white;
     padding: 20px;
     text-align: center;
@@ -57,20 +57,20 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #1abc9c; /* تغییر رنگ هنگام هاور */
+    color: #1abc9c;
 }
 
 .cart {
     position: absolute;
     top: 50%;
     right: 20px;
-    transform: translateY(-50%); /* مرکز عمودی دکمه سبد خرید */
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
 }
 
 .cart button {
-    background-color: #e67e22; /* رنگ نارنجی برای دکمه سبد خرید */
+    background-color: #e67e22;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -91,12 +91,12 @@ nav ul li a:hover {
 }
 
 .cart button:hover {
-    background-color: #d35400; /* تغییر رنگ هنگام هاور */
+    background-color: #d35400;
     transform: scale(1.05);
 }
 
 #cart-count {
-    background-color: #e74c3c; /* رنگ قرمز برای شمارنده */
+    background-color: #e74c3c;
     color: white;
     border-radius: 50%;
     padding: 5px 10px;
@@ -155,7 +155,7 @@ nav ul li a:hover {
 
 .product h3 {
     margin: 10px 0;
-    color: #34495e; /* رنگ تیره‌تر برای عنوان محصول */
+    color: #34495e;
 }
 
 .product p {
@@ -225,7 +225,7 @@ nav ul li a:hover {
 }
 
 .add-to-cart-button {
-    background-color: #1abc9c; /* رنگ سبز برای دکمه افزودن به سبد خرید */
+    background-color: #1abc9c;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -237,7 +237,7 @@ nav ul li a:hover {
 }
 
 .add-to-cart-button:hover {
-    background-color: #16a085; /* تغییر رنگ هنگام هاور */
+    background-color: #16a085;
     transform: scale(1.05);
 }
 
@@ -279,7 +279,7 @@ nav ul li a:hover {
 }
 
 #cart-items li button {
-    background-color: #e74c3c; /* رنگ قرمز برای دکمه حذف */
+    background-color: #e74c3c;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -289,11 +289,11 @@ nav ul li a:hover {
 }
 
 #cart-items li button:hover {
-    background-color: #c0392b; /* تغییر رنگ هنگام هاور */
+    background-color: #c0392b;
 }
 
 .whatsapp-button {
-    background-color: #25D366; /* رنگ سبز برای دکمه واتساپ */
+    background-color: #25D366;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -305,13 +305,13 @@ nav ul li a:hover {
 }
 
 .whatsapp-button:hover {
-    background-color: #128C7E; /* تغییر رنگ هنگام هاور */
+    background-color: #128C7E;
     transform: scale(1.05);
 }
 
 /* پاورقی */
 footer {
-    background-color: #34495e; /* رنگ پاورقی تیره‌تر */
+    background-color: #34495e;
     color: white;
     text-align: center;
     padding: 10px;
