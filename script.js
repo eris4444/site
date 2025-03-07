@@ -26,6 +26,7 @@ function showProductDetail(product) {
     document.getElementById('detail-name').textContent = product.name;
     document.getElementById('detail-description').textContent = product.description;
     document.getElementById('detail-price').textContent = product.price;
+    document.getElementById('quantity').value = 1; // تنظیم مقدار پیش‌فرض تعداد
     detailSection.style.display = 'flex';
 }
 
@@ -38,11 +39,17 @@ document.getElementById('close-detail').addEventListener('click', () => {
 function addToCart() {
     const productName = document.getElementById('detail-name').textContent;
     const productPrice = document.getElementById('detail-price').textContent;
-    const product = { name: productName, price: productPrice };
+    const quantity = parseInt(document.getElementById('quantity').value);
 
+    if (quantity < 1) {
+        alert("تعداد باید حداقل ۱ باشد!");
+        return;
+    }
+
+    const product = { name: productName, price: productPrice, quantity: quantity };
     cart.push(product);
     updateCartCount();
-    alert(`${productName} به سبد خرید اضافه شد!`);
+    alert(`${productName} (${quantity} عدد) به سبد خرید اضافه شد!`);
     document.getElementById('product-detail').style.display = 'none';
 }
 
@@ -60,7 +67,7 @@ function viewCart() {
     cart.forEach((item, index) => {
         const li = document.createElement('li');
         li.innerHTML = `
-            <span>${item.name} - ${item.price}</span>
+            <span>${item.name} - ${item.price} (${item.quantity} عدد)</span>
             <button onclick="removeFromCart(${index})">حذف</button>
         `;
         cartItems.appendChild(li);
@@ -92,7 +99,7 @@ function sendOrderViaWhatsApp() {
     let message = "سلام، من می‌خوام محصولات زیر رو سفارش بدم:\n\n";
 
     cart.forEach((item, index) => {
-        message += `${index + 1}. ${item.name} - ${item.price}\n`;
+        message += `${index + 1}. ${item.name} - ${item.price} (${item.quantity} عدد)\n`;
     });
 
     message += "\nلطفاً راهنمایی کنید.";
