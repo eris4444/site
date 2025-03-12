@@ -7,23 +7,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>ESP Flasher</h1>
+    <div class="container">
+        <h1>ESP Flasher</h1>
 
-    <label for="baudRate">Baud Rate:</label>
-    <select id="baudRate">
-        <option value="9600">9600</option>
-        <option value="115200" selected>115200</option>
-        <option value="230400">230400</option>
-        <option value="460800">460800</option>
-    </select>
+        <div class="input-group">
+            <label for="baudRate">🔧 انتخاب Baud Rate:</label>
+            <select id="baudRate">
+                <option value="9600">9600</option>
+                <option value="115200" selected>115200</option>
+                <option value="230400">230400</option>
+                <option value="460800">460800</option>
+            </select>
+        </div>
 
-    <button id="connectBtn">اتصال به ESP</button>
+        <button id="connectBtn" class="btn">🔗 اتصال به ESP</button>
 
-    <input type="file" id="firmwareFile" accept=".bin">
-    <button id="flashBtn" disabled>فلش فریمور</button>
+        <div class="input-group">
+            <input type="file" id="firmwareFile" accept=".bin">
+        </div>
 
-    <h3>Log:</h3>
-    <textarea id="log" readonly></textarea>
+        <button id="flashBtn" class="btn disabled" disabled>⚡ فلش فریمور</button>
+
+        <h3>📜 Log:</h3>
+        <div id="log"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
