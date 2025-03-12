@@ -24,6 +24,19 @@ h1 {
   margin-bottom: 10px;
 }
 
+p {
+  margin: 5px 0;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .upload-section {
   margin-bottom: 20px;
 }
