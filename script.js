@@ -45,7 +45,17 @@ uploadButton.addEventListener('click', async () => {
 
     try {
       log('Uploading firmware...');
-      await writer.write(firmwareData);
+      const chunkSize = 1024; // اندازه هر بسته داده
+      let uploadedBytes = 0;
+
+      for (let i = 0; i < firmwareData.length; i += chunkSize) {
+        const chunk = firmwareData.slice(i, i + chunkSize);
+        await writer.write(chunk);
+        uploadedBytes += chunk.length;
+        const progress = ((uploadedBytes / firmwareData.length) * 100).toFixed(2);
+        log(`Uploaded: ${progress}%`);
+      }
+
       log('Firmware uploaded successfully!');
     } catch (err) {
       log('Error uploading firmware: ' + err.message);
