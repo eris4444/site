@@ -1,42 +1,28 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP Flasher</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESP8266/ESP32 Programmer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>ESP Flasher</h1>
-
-        <div class="input-group">
-            <label for="baudRate">🔧 انتخاب Baud Rate:</label>
-            <select id="baudRate">
-                <option value="9600">9600</option>
-                <option value="115200" selected>115200</option>
-                <option value="230400">230400</option>
-                <option value="460800">460800</option>
-            </select>
-        </div>
-
-        <button id="connectBtn" class="btn">🔗 اتصال به ESP</button>
-
-        <div class="input-group">
-            <input type="file" id="firmwareFile" accept=".bin">
-        </div>
-
-        <button id="flashBtn" class="btn disabled" disabled>⚡ فلش فریمور</button>
-
-        <h3>📜 Log:</h3>
-        <div id="log"></div>
-
-        <footer>
-            <p>👨‍💻 ساخته شده توسط <b>Eris RTG</b></p>
-            <p>🔗 <a href="https://github.com/eris4444" target="_blank">GitHub: eris4444</a></p>
-        </footer>
+  <div class="container">
+    <h1>ESP8266/ESP32 Web Programmer</h1>
+    <p>Connect your device and upload firmware.</p>
+    
+    <div class="upload-section">
+      <input type="file" id="firmware-file" accept=".bin">
+      <button id="connect-button">Connect to Device</button>
+      <button id="upload-button" disabled>Upload Firmware</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="logs">
+      <h2>Logs</h2>
+      <pre id="log-output"></pre>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
