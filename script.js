@@ -1,75 +1,57 @@
 let port;
-let baudRate = 115200; // مقدار پیش‌فرض
+let firmwareFile;
 
-document.getElementById("baudRate").addEventListener("change", function() {
-    baudRate = parseInt(this.value);
-    logMessage(`🔄 Baud Rate تنظیم شد: ${baudRate}`, "info");
-});
+// عناصر DOM
+const connectButton = document.getElementById('connect-button');
+const uploadButton = document.getElementById('upload-button');
+const firmwareInput = document.getElementById('firmware-file');
+const logOutput = document.getElementById('log-output');
 
-document.getElementById("connectBtn").addEventListener("click", async () => {
-    try {
-        port = await navigator.serial.requestPort();
-        await port.open({ baudRate: baudRate }); // حالا مقدار متغیر اعمال می‌شود
-        logMessage(`✅ اتصال برقرار شد با Baud Rate: ${baudRate}`, "success");
-        document.getElementById("flashBtn").classList.remove("disabled");
-        document.getElementById("flashBtn").disabled = false;
-    } catch (err) {
-        logMessage("❌ خطا در اتصال: " + err.message, "error");
-    }
-});
-
-document.getElementById("flashBtn").addEventListener("click", async () => {
-    if (!port) {
-        logMessage("⚠️ ابتدا به ESP متصل شوید!", "warning");
-        return;
-    }
-
-    const fileInput = document.getElementById("firmwareFile");
-    if (fileInput.files.length === 0) {
-        logMessage("⚠️ لطفاً یک فایل فریمور انتخاب کنید!", "warning");
-        return;
-    }
-
-    const file = fileInput.files[0];
-    const data = new Uint8Array(await file.arrayBuffer());
-    const writer = port.writable.getWriter();
-    
-    logMessage("📤 در حال ارسال فریمور...", "info");
-    
-    document.getElementById("flashBtn").classList.add("disabled");
-    document.getElementById("flashBtn").disabled = true;
-
-    try {
-        const chunkSize = 1024; // ارسال در بسته‌های 1024 بایتی
-        let totalChunks = Math.ceil(data.length / chunkSize);
-        for (let i = 0; i < totalChunks; i++) {
-            let start = i * chunkSize;
-            let end = Math.min(start + chunkSize, data.length);
-            let chunk = data.slice(start, end);
-
-            await writer.write(chunk);
-
-            let progress = ((i + 1) / totalChunks) * 100;
-            logMessage(`📊 پیشرفت: ${progress.toFixed(2)}%`, "info");
-        }
-
-        logMessage("✅ فریمور با موفقیت ارسال شد!", "success");
-    } catch (err) {
-        logMessage("❌ خطا در ارسال: " + err.message, "error");
-    } finally {
-        writer.releaseLock();
-        document.getElementById("flashBtn").classList.remove("disabled");
-        document.getElementById("flashBtn").disabled = false;
-    }
-});
-
-function logMessage(message, type = "info") {
-    const logElement = document.getElementById("log");
-    const logEntry = document.createElement("div");
-
-    logEntry.textContent = message;
-    logEntry.classList.add("log-" + type);
-    logElement.appendChild(logEntry);
-
-    logElement.scrollTop = logElement.scrollHeight;
+// افزودن لاگ به صفحه
+function log(message) {
+  logOutput.textContent += message + '\n';
+  logOutput.scrollTop = logOutput.scrollHeight; // اسکرول به پایین
 }
+
+// اتصال به دستگاه
+connectButton.addEventListener('click', async () => {
+  try {
+    port = await navigator.serial.requestPort();
+    await port.open({ baudRate: 115200 });
+    log('Connected to device.');
+    uploadButton.disabled = false;
+  } catch (err) {
+    log('Error connecting to device: ' + err.message);
+  }
+});
+
+// انتخاب فایل فرمور
+firmwareInput.addEventListener('change', (event) => {
+  firmwareFile = event.target.files[0];
+  log('Firmware file selected: ' + firmwareFile.name);
+});
+
+// آپلود فرمور
+uploadButton.addEventListener('click', async () => {
+  if (!port || !firmwareFile) {
+    log('Please connect to a device and select a firmware file.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = async () => {
+    const firmwareData = new Uint8Array(reader.result);
+    const writer = port.writable.getWriter();
+
+    try {
+      log('Uploading firmware...');
+      await writer.write(firmwareData);
+      log('Firmware uploaded successfully!');
+    } catch (err) {
+      log('Error uploading firmware: ' + err.message);
+    } finally {
+      writer.releaseLock();
+    }
+  };
+  reader.readAsArrayBuffer(firmwareFile);
+});
